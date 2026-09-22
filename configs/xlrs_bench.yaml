@@ -1,0 +1,19 @@
+method: gazeearth
+seed: 0
+output_dir: outputs/xlrs_bench_gazeearth
+
+model:
+  backend: qwen
+  path: Qwen/Qwen3-VL-8B-Instruct
+  attn_implementation: sdpa
+  max_new_tokens: 1024
+  temperature: 0.0
+
+selector: {grid_rows: 4, grid_cols: 4, overview_long_side: 1536, max_regions: 2, max_new_tokens: 64}
+focus: {expansion_ratio: 0.25, overview_long_side: 2048, answer_max_new_tokens: 1024, focus_scale: 1.5, max_focus_fraction: 0.55}
+anchor: {enabled: true, context_scale: 4.0, min_focus_fraction: 0.04, max_focus_fraction: 0.30}
+
+dataset:
+  name: XLRS-Bench
+  annotation_path: data/XLRS-Bench/test.jsonl
+  root: data/XLRS-Bench/images

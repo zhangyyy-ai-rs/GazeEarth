@@ -1,0 +1,7 @@
+model:
+  backend: llava
+  path: llava-hf/llava-v1.6-mistral-7b-hf
+  attn_implementation: sdpa
+  dtype: float16
+  max_new_tokens: 1024
+  temperature: 0.0

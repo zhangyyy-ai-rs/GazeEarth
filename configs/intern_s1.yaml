@@ -1,0 +1,7 @@
+model:
+  backend: intern_s1
+  path: internlm/Intern-S1-mini
+  attn_implementation: sdpa
+  enable_thinking: false
+  max_new_tokens: 1024
+  temperature: 0.0

@@ -1,0 +1,7 @@
+model:
+  backend: openrouter
+  model_name: openai/gpt-4o-2024-11-20
+  api_key_env: OPENROUTER_API_KEY
+  image_detail: high
+  max_new_tokens: 1024
+  temperature: 0.0
