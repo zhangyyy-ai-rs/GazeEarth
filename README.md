@@ -26,7 +26,7 @@ Multimodal large language models must balance local detail against scene context
   <a href="figure/framework.png"><img src="figure/framework.png" alt="GazeEarth framework" width="100%"></a>
 </p>
 
-## Environment
+## <img src="figure/icons/environment.png" width="32" height="32" align="absmiddle" alt=""> Environment
 
 <p align="justify">Python <strong>3.11</strong> and a CUDA GPU are recommended. Run the following commands from the repository root:</p>
 
@@ -40,7 +40,7 @@ pip install -e . --no-deps
 python -m nltk.downloader wordnet omw-1.4
 ```
 
-## Data
+## <img src="figure/icons/data.png" width="32" height="32" align="absmiddle" alt=""> Data
 
 <p align="justify">Arrange <a href="https://huggingface.co/datasets/HappyBug/LRS-GRO">LRS-GRO</a>, <a href="https://huggingface.co/datasets/initiacms/XLRS-Bench-lite">XLRS-Bench</a>, and <a href="https://huggingface.co/datasets/yifanzhang114/MME-RealWorld">MME-RealWorld-RS</a> as follows:</p>
 
@@ -62,7 +62,7 @@ data/
 
 <p align="justify">For custom paths, update <code>dataset.annotation_path</code> and <code>dataset.root</code> in the YAML config.</p>
 
-## Backbone Configuration
+## <img src="figure/icons/backbone.png" width="32" height="32" align="absmiddle" alt=""> Backbone Configuration
 
 <p align="justify">Use the default Qwen3-VL configuration, or add a model configuration to either inference or evaluation:</p>
 
@@ -75,7 +75,7 @@ data/
 
 <p align="justify">For GPT-4o, set the <code>OPENROUTER_API_KEY</code> environment variable before running. API usage is billed by the provider.</p>
 
-## Evaluation
+## <img src="figure/icons/evaluation.png" width="32" height="32" align="absmiddle" alt=""> Evaluation
 
 ```bash
 # Evaluate a benchmark.
@@ -93,6 +93,6 @@ python scripts/infer.py --images path/to/image.jpg --question "What is shown?"
 
 <p align="justify">Outputs include <code>predictions.jsonl</code>, <code>traces.jsonl</code>, <code>results.json</code>, and <code>run_manifest.json</code>. Do not combine <code>--resume</code> and <code>--overwrite</code>.</p>
 
-## Acknowledgements
+## <img src="figure/icons/acknowledgements.png" width="32" height="32" align="absmiddle" alt=""> Acknowledgements
 
 <p align="justify">We thank the teams behind <a href="https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct">Qwen3-VL</a>, <a href="https://huggingface.co/llava-hf/llava-v1.6-mistral-7b-hf">LLaVA</a>, <a href="https://huggingface.co/internlm/Intern-S1-mini">Intern-S1</a>, and <a href="https://openrouter.ai/openai/gpt-4o-2024-11-20">GPT-4o</a> for making their models accessible, and the creators of <a href="https://huggingface.co/datasets/HappyBug/LRS-GRO">LRS-GRO</a>, <a href="https://huggingface.co/datasets/initiacms/XLRS-Bench-lite">XLRS-Bench</a>, and <a href="https://huggingface.co/datasets/yifanzhang114/MME-RealWorld">MME-RealWorld</a> for providing the benchmarks used in this work. We also thank <a href="https://openrouter.ai/">OpenRouter</a> for providing API access to the models used in our API-based experiments.</p>
