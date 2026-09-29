@@ -16,6 +16,11 @@
   <sup>*</sup> Equal contribution &nbsp; <sup>†</sup> Corresponding authors
 </p>
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2609.31747"><img src="https://img.shields.io/badge/Paper-arXiv%3A2609.31747-b31b1b?style=flat-square" alt="Paper: arXiv 2609.31747"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-3da44d?style=flat-square" alt="License: Apache-2.0"></a>
+</p>
+
 ## Abstract
 
 <p align="justify">
@@ -92,6 +97,22 @@ python scripts/infer.py --images path/to/image.jpg --question "What is shown?"
 ```
 
 <p align="justify">Outputs include <code>predictions.jsonl</code>, <code>traces.jsonl</code>, <code>results.json</code>, and <code>run_manifest.json</code>. Do not combine <code>--resume</code> and <code>--overwrite</code>.</p>
+
+## <img src="figure/icons/citation.png" width="32" height="32" align="absmiddle" alt=""> Citation
+
+If you find GazeEarth useful in your research, please consider citing our paper:
+
+```bibtex
+@misc{zhang2026gazeearth,
+  title         = {The Earth in One Gaze: Training-Free Active Focus for {UHR} Remote Sensing Understanding},
+  author        = {Yao Zhang and Pengyu Dai and Wei Guo and Jian Liang and Jian Song and Yafei Ou and Hongruixuan Chen and Naoto Yokoya},
+  year          = {2026},
+  eprint        = {2609.31747},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2609.31747}
+}
+```
 
 ## <img src="figure/icons/acknowledgements.png" width="32" height="32" align="absmiddle" alt=""> Acknowledgements
 
