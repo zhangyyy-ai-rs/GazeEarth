@@ -21,7 +21,7 @@
 </header>
 <main id="top">
   <section class="hero container" aria-labelledby="title">
-    <h1 id="title"><span class="title-line"><img class="hero-logo" src="assets/logo.png" alt="GazeEarth logo">The Earth in One Gaze: Training-Free</span><span class="title-line">Active Focus for UHR Remote Sensing Understanding</span></h1>
+    <h1 id="title"><span class="title-line"><img class="hero-logo" src="assets/logo.png" alt="GazeEarth logo"><img class="title-art" src="assets/headings/title-first.svg" alt="The Earth in One Gaze: Training-Free"></span><span class="title-line"><img class="title-art" src="assets/headings/title-second.svg" alt="Active Focus for UHR Remote Sensing Understanding"></span></h1>
     <div class="authors">
       <span>Yao Zhang<sup>1,*</sup></span><span>Pengyu Dai<sup>2,3,*</sup></span><span>Wei Guo<sup>1,†</sup></span><span>Jian Liang<sup>1</sup></span><br>
       <span>Jian Song<sup>3</sup></span><span>Yafei Ou<sup>3</sup></span><span>Hongruixuan Chen<sup>3,†</sup></span><span>Naoto Yokoya<sup>2,3</sup></span>
@@ -47,25 +47,25 @@
   </section>
 
   <section class="section reading" id="abstract">
-    <div class="section-heading"><h2>Abstract</h2></div>
+    <div class="section-heading"><h2><img class="heading-art" src="assets/headings/abstract.svg" alt="Abstract"></h2></div>
     <div class="abstract-text">
       <p>Multimodal large language models (MLLMs) must balance local detail against scene context when interpreting ultra-high-resolution (UHR) remote sensing (RS) imagery within a limited visual-input budget. Existing selection-based methods either prune tokens and select patches through relevance scoring, or crop actively through repeated inspection. Neither strategy directly redistributes pixels within a continuous full-scene view: the first retains selected tokens or patches, and the second re-encodes a crop detached from its surroundings. Our pilot study finds that a frozen MLLM already produces useful question-guided spatial requests, yet crop-based inspection of the selected regions does not consistently improve its answers. We therefore formulate UHR understanding as a question of where to spend a fixed pixel budget. Based on this, we introduce <strong>GazeEarth</strong>, a simple-yet-effective training-free framework that couples question-guided region selection with full-scene foveated observation. The MLLM selects evidence cells from an indexed overview; a deterministic, topology-preserving warp resamples the original image onto a fixed-size canvas, enlarging their shared neighborhood while compressing the periphery; the same frozen model answers from this focused view, using at most two MLLM calls and no external selector or iterative search. Across three UHR remote sensing benchmarks and four frozen backbones, GazeEarth improves benchmark-averaged accuracy by 4.6 to 9.4 percentage points over direct answering and 3.4 to 4.3 over overview answering, outperforming task-trained methods. Our analyses show that existing MLLMs can guide where to look in UHR images on their own, and that what they can infer from the selected evidence depends on how that evidence is presented.</p>
     </div>
   </section>
 
   <section class="tinted" id="method"><div class="container section">
-    <div class="section-heading"><h2>Method Overview</h2></div>
+    <div class="section-heading"><h2><img class="heading-art" src="assets/headings/method.svg" alt="Method Overview"></h2></div>
     <figure class="paper-figure method-figure"><div class="image-frame framework-frame"><img src="assets/framework.png" alt="GazeEarth framework: question-guided gaze, topology-preserving focus, and evidence-grounded answering" loading="lazy" width="2200" height="1238"></div><figcaption>GazeEarth framework.</figcaption></figure>
     <p class="method-summary">A frozen MLLM selects evidence regions from the question and an indexed overview. A deterministic, topology-preserving warp enlarges the selected neighborhood within a fixed-size, full-scene canvas. The same model then answers from this focused observation, without fine-tuning or an external selector.</p>
   </div></section>
 
   <section class="section container" id="examples">
-    <div class="section-heading"><h2>Case Study</h2><p class="lead">A comparison of observation strategies for spatial reasoning.</p></div>
+    <div class="section-heading"><h2><img class="heading-art" src="assets/headings/case-study.svg" alt="Case Study"></h2><p class="lead">A comparison of observation strategies for spatial reasoning.</p></div>
     <figure class="paper-figure case-study-figure"><div class="image-frame trimmed-frame" style="--frame-ratio:1776/915;--image-width:112.613%;--image-left:-3.041%;--image-top:-4.372%"><img src="assets/case-study.png" alt="Full paper comparison of Direct, ZoomEarth, ZoomSearch, WeaveEarth, and GazeEarth on a track–court spatial relation" width="2000" height="1125" loading="lazy"></div><figcaption>GazeEarth enlarges both landmarks while retaining their scene context.</figcaption></figure>
   </section>
 
   <section class="tinted" id="results"><div class="container section">
-    <div class="section-heading"><h2>Results</h2><p class="lead">Cross-backbone evaluation on three remote sensing benchmarks.</p></div>
+    <div class="section-heading"><h2><img class="heading-art" src="assets/headings/results.svg" alt="Results"></h2><p class="lead">Cross-backbone evaluation on three remote sensing benchmarks.</p></div>
     <div class="result-control"><label for="backbone">Backbone</label><select id="backbone"><option value="qwen">Qwen3-VL-8B</option><option value="llava">LLaVA-v1.6-7B</option><option value="intern">Intern-S1-mini</option><option value="gpt">GPT-4o</option></select></div>
     <div class="table-wrap"><table><caption class="sr-only">Cross-backbone benchmark scores, in percent</caption><thead><tr><th scope="col">Observation</th><th scope="col">LRS-GRO</th><th scope="col">MME-RealWorld-RS</th><th scope="col">XLRS-Bench-Lite</th><th scope="col">Mean</th></tr></thead><tbody id="result-rows">
       <tr><th scope="row">Direct</th><td>56.90</td><td>42.11</td><td>42.92</td><td>47.31</td></tr>
@@ -76,7 +76,7 @@
   </div></section>
 
   <section class="section reading" id="citation">
-    <div class="section-heading"><h2>Citation</h2><p class="lead">If you find this work useful in your research, please consider citing our paper.</p></div>
+    <div class="section-heading"><h2><img class="heading-art" src="assets/headings/citation.svg" alt="Citation"></h2><p class="lead">If you find this work useful in your research, please consider citing our paper.</p></div>
     <div class="citation-box"><div class="code-header"><span>BibTeX</span><button id="copy-citation" type="button">Copy citation</button></div><pre><code id="bibtex">@misc{zhang2026gazeearth,
   title = {The Earth in One Gaze: Training-Free Active Focus
            for {UHR} Remote Sensing Understanding},
