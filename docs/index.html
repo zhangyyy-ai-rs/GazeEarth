@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GazeEarth: training-free active focus for ultra-high-resolution remote sensing understanding. A question-guided gaze, a full-scene focused view, and a frozen multimodal model.">
+  <meta name="theme-color" content="#0f2339">
+  <title>GazeEarth — The Earth in One Gaze</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+<a class="skip" href="#abstract">Skip to content</a>
+<header class="topbar">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="#top"><img src="assets/logo.png" alt="" width="32" height="32">GazeEarth</a>
+    <div class="navlinks"><a href="#method">Method</a><a href="#examples">Examples</a><a href="#results">Results</a><a href="#citation">Citation</a></div>
+    <a class="nav-paper" href="https://arxiv.org/abs/2609.31747" target="_blank" rel="noopener">Paper</a>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero container" aria-labelledby="title">
+    <h1 id="title"><span class="title-line"><img class="hero-logo" src="assets/logo.png" alt="GazeEarth logo">The Earth in One Gaze: Training-Free</span><span class="title-line">Active Focus for UHR Remote Sensing Understanding</span></h1>
+    <div class="authors">
+      <span>Yao Zhang<sup>1,*</sup></span><span>Pengyu Dai<sup>2,3,*</sup></span><span>Wei Guo<sup>1,†</sup></span><span>Jian Liang<sup>1</sup></span><br>
+      <span>Jian Song<sup>3</sup></span><span>Yafei Ou<sup>3</sup></span><span>Hongruixuan Chen<sup>3,†</sup></span><span>Naoto Yokoya<sup>2,3</sup></span>
+    </div>
+    <p class="affiliations"><span><sup>1</sup> Wuhan University</span><span><sup>2</sup> The University of Tokyo</span><span><sup>3</sup> RIKEN AIP</span></p>
+    <p class="contributions">* Equal contribution &nbsp;&nbsp; † Corresponding authors</p>
+    <div class="actions">
+      <a class="button" href="https://arxiv.org/pdf/2609.31747" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>Paper</a>
+      <a class="button" href="https://github.com/zhangyyy-ai-rs/GazeEarth" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></svg>Code</a>
+      <a class="button" href="#citation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6v8H5v5H2v-7l2-6zm12 0h6v8h-5v5h-3v-7l2-6z"/></svg>BibTeX</a>
+    </div>
+  </section>
+
+  <section class="home-showcase" aria-label="Qualitative examples" id="showcase">
+    <div class="case-strip" tabindex="0" role="region" aria-label="Scrolling paper examples. Use the arrow keys or scroll horizontally to explore.">
+      <div class="strip-track"><div class="strip-group">
+        <figure class="strip-card" style="--card-ratio:2.144958"><div class="image-frame trimmed-frame" style="--frame-ratio:2042/952;--image-width:107.737%;--image-left:-2.987%;--image-top:-2.416%"><img src="assets/case2.png" alt="Ship counting: original scene, observation strategies, and answers from the paper" width="2200" height="1238"></div><figcaption>Ship counting</figcaption></figure>
+        <figure class="strip-card" style="--card-ratio:1.777966"><div class="image-frame trimmed-frame" style="--frame-ratio:2098/1180;--image-width:104.862%;--image-left:-0.286%;--image-top:-1.441%"><img src="assets/case3.png" alt="Station location: original scene, observation strategies, and answers from the paper" width="2200" height="1238"></div><figcaption>Station location</figcaption></figure>
+        <figure class="strip-card" style="--card-ratio:2.144958"><div class="image-frame trimmed-frame" style="--frame-ratio:2042/952;--image-width:107.737%;--image-left:-2.987%;--image-top:-2.416%"><img src="assets/case1.png" alt="Scene context: original scene, observation strategies, and answers from the paper" width="2200" height="1238"></div><figcaption>Scene context</figcaption></figure>
+      </div></div>
+    </div>
+    <div class="strip-controls"><button id="case-prev" type="button" aria-label="Scroll examples left">←</button><button id="case-play" type="button" aria-label="Pause automatic scrolling">Pause</button><button id="case-next" type="button" aria-label="Scroll examples right">→</button></div>
+  </section>
+
+  <section class="section reading" id="abstract">
+    <div class="section-heading"><h2>Abstract</h2></div>
+    <div class="abstract-text">
+      <p>Multimodal large language models (MLLMs) must balance local detail against scene context when interpreting ultra-high-resolution (UHR) remote sensing (RS) imagery within a limited visual-input budget. Existing selection-based methods either prune tokens and select patches through relevance scoring, or crop actively through repeated inspection. Neither strategy directly redistributes pixels within a continuous full-scene view: the first retains selected tokens or patches, and the second re-encodes a crop detached from its surroundings. Our pilot study finds that a frozen MLLM already produces useful question-guided spatial requests, yet crop-based inspection of the selected regions does not consistently improve its answers. We therefore formulate UHR understanding as a question of where to spend a fixed pixel budget. Based on this, we introduce <strong>GazeEarth</strong>, a simple-yet-effective training-free framework that couples question-guided region selection with full-scene foveated observation. The MLLM selects evidence cells from an indexed overview; a deterministic, topology-preserving warp resamples the original image onto a fixed-size canvas, enlarging their shared neighborhood while compressing the periphery; the same frozen model answers from this focused view, using at most two MLLM calls and no external selector or iterative search. Across three UHR remote sensing benchmarks and four frozen backbones, GazeEarth improves benchmark-averaged accuracy by 4.6 to 9.4 percentage points over direct answering and 3.4 to 4.3 over overview answering, outperforming task-trained methods. Our analyses show that existing MLLMs can guide where to look in UHR images on their own, and that what they can infer from the selected evidence depends on how that evidence is presented.</p>
+    </div>
+  </section>
+
+  <section class="tinted" id="method"><div class="container section">
+    <div class="section-heading"><h2>Method Overview</h2></div>
+    <figure class="paper-figure method-figure"><div class="image-frame framework-frame"><img src="assets/framework.png" alt="GazeEarth framework: question-guided gaze, topology-preserving focus, and evidence-grounded answering" loading="lazy" width="2200" height="1238"></div><figcaption>GazeEarth framework.</figcaption></figure>
+    <p class="method-summary">A frozen MLLM selects evidence regions from the question and an indexed overview. A deterministic, topology-preserving warp enlarges the selected neighborhood within a fixed-size, full-scene canvas. The same model then answers from this focused observation, without fine-tuning or an external selector.</p>
+  </div></section>
+
+  <section class="section container" id="examples">
+    <div class="section-heading"><h2>Case Study</h2><p class="lead">A comparison of observation strategies for spatial reasoning.</p></div>
+    <figure class="paper-figure case-study-figure"><div class="image-frame trimmed-frame" style="--frame-ratio:1776/915;--image-width:112.613%;--image-left:-3.041%;--image-top:-4.372%"><img src="assets/case-study.png" alt="Full paper comparison of Direct, ZoomEarth, ZoomSearch, WeaveEarth, and GazeEarth on a track–court spatial relation" width="2000" height="1125" loading="lazy"></div><figcaption>GazeEarth enlarges both landmarks while retaining their scene context.</figcaption></figure>
+  </section>
+
+  <section class="tinted" id="results"><div class="container section">
+    <div class="section-heading"><h2>Results</h2><p class="lead">Cross-backbone evaluation on three remote sensing benchmarks.</p></div>
+    <div class="result-control"><label for="backbone">Backbone</label><select id="backbone"><option value="qwen">Qwen3-VL-8B</option><option value="llava">LLaVA-v1.6-7B</option><option value="intern">Intern-S1-mini</option><option value="gpt">GPT-4o</option></select></div>
+    <div class="table-wrap"><table><caption class="sr-only">Cross-backbone benchmark scores, in percent</caption><thead><tr><th scope="col">Observation</th><th scope="col">LRS-GRO</th><th scope="col">MME-RealWorld-RS</th><th scope="col">XLRS-Bench-Lite</th><th scope="col">Mean</th></tr></thead><tbody id="result-rows">
+      <tr><th scope="row">Direct</th><td>56.90</td><td>42.11</td><td>42.92</td><td>47.31</td></tr>
+      <tr><th scope="row">Overview</th><td>59.99</td><td>49.01</td><td>45.13</td><td>51.38</td></tr>
+      <tr class="ours"><th scope="row">GazeEarth</th><td>61.00</td><td>52.43</td><td>53.51</td><td>55.65</td></tr>
+    </tbody></table></div>
+    <p class="table-note">Scores are reported in percent. Mean is the unweighted average of the three benchmark scores. Values follow the paper's cross-backbone table; see the paper for benchmark-specific evaluation protocols.</p>
+  </div></section>
+
+  <section class="section reading" id="citation">
+    <div class="section-heading"><h2>Citation</h2><p class="lead">If you find this work useful in your research, please consider citing our paper.</p></div>
+    <div class="citation-box"><div class="code-header"><span>BibTeX</span><button id="copy-citation" type="button">Copy citation</button></div><pre><code id="bibtex">@misc{zhang2026gazeearth,
+  title = {The Earth in One Gaze: Training-Free Active Focus
+           for {UHR} Remote Sensing Understanding},
+  author = {Yao Zhang and Pengyu Dai and Wei Guo and Jian Liang
+            and Jian Song and Yafei Ou and Hongruixuan Chen
+            and Naoto Yokoya},
+  year = {2026},
+  eprint = {2609.31747},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  url = {https://arxiv.org/abs/2609.31747}
+}</code></pre></div><p id="copy-status" role="status" class="copy-status"></p>
+  </section>
+</main>
+<footer><div class="container footer-inner"><a class="brand" href="#top"><img src="assets/logo.png" alt="" width="30" height="30">GazeEarth</a><p>The Earth in One Gaze · 2026</p><div><a href="https://arxiv.org/abs/2609.31747">Paper</a><a href="https://github.com/zhangyyy-ai-rs/GazeEarth">Code</a></div></div></footer>
+
+</body>
+</html>

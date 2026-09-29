@@ -18,6 +18,7 @@
 
 <p align="center">
   <a href="https://arxiv.org/abs/2609.31747"><img src="https://img.shields.io/badge/Paper-arXiv%3A2609.31747-b31b1b?style=flat-square" alt="Paper: arXiv 2609.31747"></a>
+  <a href="https://zhangyyy-ai-rs.github.io/GazeEarth/"><img src="https://img.shields.io/badge/Project-Page-087f8c?style=flat-square" alt="Project Page"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-3da44d?style=flat-square" alt="License: Apache-2.0"></a>
 </p>
 
