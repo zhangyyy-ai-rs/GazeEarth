@@ -34,6 +34,18 @@ function updatePlayback() {
   if(autoplay && visible && !document.hidden && !strip.matches(':hover') && !strip.contains(document.activeElement)) frameId = requestAnimationFrame(tick);
 }
 function stopForInteraction(){cancelAnimationFrame(manualFrame);manualFrame=0;autoplay=false;updatePlayback();}
+// Keep native touch/inertial scrolling in the middle copy, too. Previously
+// only autoplay and the arrow buttons wrapped, so gestures hit a finite edge.
+function wrapNativeScroll() {
+  if(manualFrame)return;
+  const width=group.getBoundingClientRect().width;
+  if(!width)return;
+  const current=strip.scrollLeft;
+  if(current<width || current>=2*width) {
+    strip.scrollLeft=width+modulo(current,width);
+    position=strip.scrollLeft;
+  }
+}
 function step(direction) {
   stopForInteraction();
   const width=group.getBoundingClientRect().width;
@@ -70,7 +82,22 @@ document.getElementById('case-play').addEventListener('click',()=>{autoplay=!aut
 ['mouseenter','mouseleave','focusin'].forEach(event=>strip.addEventListener(event,updatePlayback));
 strip.addEventListener('focusout',()=>queueMicrotask(updatePlayback));
 strip.addEventListener('touchstart',stopForInteraction,{passive:true});
-strip.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)>0)stopForInteraction();},{passive:true});
+strip.addEventListener('wheel',e=>{
+  // Leave ordinary vertical page scrolling (and pinch zoom) untouched.
+  if(e.ctrlKey || !e.deltaX || Math.abs(e.deltaX)<Math.abs(e.deltaY))return;
+  stopForInteraction();
+  const width=group.getBoundingClientRect().width;
+  if(!width || !e.cancelable)return;
+  // Consume horizontal trackpad momentum before the native scroller can
+  // clamp it at an edge; modulo also handles a fling wider than one group.
+  e.preventDefault();
+  const unit=e.deltaMode===1 ? 16 : e.deltaMode===2 ? strip.clientWidth : 1;
+  position=width+modulo(strip.scrollLeft+e.deltaX*unit,width);
+  strip.scrollLeft=position;
+},{passive:false});
+strip.addEventListener('scroll',wrapNativeScroll,{passive:true});
+new ResizeObserver(wrapNativeScroll).observe(group);
+wrapNativeScroll();
 strip.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();step(e.key==='ArrowLeft'?-1:1);}});
 document.addEventListener('visibilitychange',updatePlayback);
 motionPreference.addEventListener('change',()=>{if(motionPreference.matches)autoplay=false;updatePlayback();});
