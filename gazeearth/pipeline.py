@@ -12,7 +12,7 @@ from .selector import FixedGridSelector
 from .topology_focus import build_topology_preserving_focus_views
 
 # The public full-scene template has its own identity for safe resume checks.
-ANSWER_PROTOCOL_ID = "gazeearth-paper-answer"
+ANSWER_PROTOCOL_ID = "gazeearth-visible-cot2-v1"
 STAGES = (
     "Question-guided gaze",
     "Topology-preserving foveated mapping",
@@ -65,15 +65,16 @@ class GazeEarthPipeline:
 
     @staticmethod
     def answer_prompt(question: str) -> str:
-        # Shared verbatim by GazeEarth and the matched Overview control.  The
-        # wording describes the real model-facing input without claiming that
-        # separate crops or detail views exist.
+        # Shared verbatim by Direct, Overview, and GazeEarth.
         return (
-            "The visual input contains one full-scene view for each remote-sensing "
-            "source. Any labels are neutral correspondence cues only.\n"
-            "Answer the visual question using only visible evidence. Explain your reasoning before giving the final answer.\n"
+            "The visual input contains a global overview and may contain a focused view "
+            "derived from the same remote-sensing image. Any labels are neutral "
+            "correspondence cues only.\n"
+            "Answer using only visible evidence. Explain the visual evidence that supports "
+            "your conclusion before giving the answer. Do not invent or repeatedly enumerate "
+            "objects that are not visibly distinct.\n"
             f"Question: {question}\n"
-            "Enclose only the final answer in <answer>...</answer> tags."
+            "End the response with exactly: <answer>your short answer</answer>"
         )
 
     def _answer(self, question: str, images) -> tuple[str, str, float]:
